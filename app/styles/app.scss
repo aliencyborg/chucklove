@@ -1,6 +1,26 @@
 @import "ember-bootstrap/bootstrap";
 @import "variables";
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background: $background-color;
+  margin-bottom: $footer-height;
+}
+
+/* Sticky Footer */
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  background-color: $footer-background;
+}
+
 /* Responsive typography */
 
 html body {
@@ -23,10 +43,6 @@ html body {
   html body {
     font-size: ($font-size-base * 1.6);
   }
-}
-
-body {
-  background: $background-color;
 }
 
 @import "index";
