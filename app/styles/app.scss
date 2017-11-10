@@ -1,5 +1,32 @@
-body {
-  background: gray;
+@import "ember-bootstrap/bootstrap";
+@import "variables";
+
+/* Responsive typography */
+
+html body {
+  font-size: $font-size-base;
 }
 
-@import "ember-bootstrap/bootstrap";
+@include media-breakpoint-up(sm) {
+  html body {
+    font-size: ($font-size-base * 1.2);
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html body {
+    font-size: ($font-size-base * 1.4);
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html body {
+    font-size: ($font-size-base * 1.6);
+  }
+}
+
+body {
+  background: $background-color;
+}
+
+@import "index";
