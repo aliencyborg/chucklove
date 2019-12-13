@@ -1,9 +1,16 @@
-<div class='container'>
-  {{outlet}}
-</div>
+<div class="min-h-screen bg-gray-500 border-4 border-orange-500 flex">
+  <div class="flex flex-col w-full">
+    <div class="flex-grow">
+      {{outlet}}
+    </div>
 
-<footer class="footer">
-  <div class="container">
-    <small class="text-muted text-sm">WebSite by AlienCyborg</small>
+    <div class="">
+      icon panel goes here
+      <IconPanel />
+    </div>
+
+    <div class="bg-yellow-400">
+      <AlienFooter />
+    </div>
   </div>
-</footer>
+</div>
