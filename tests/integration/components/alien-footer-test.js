@@ -1,26 +1,26 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
+import { module, test } from 'qunit'
+import { setupRenderingTest } from 'ember-qunit'
+import { render } from '@ember/test-helpers'
+import { hbs } from 'ember-cli-htmlbars'
 
 module('Integration | Component | alien-footer', function(hooks) {
-  setupRenderingTest(hooks);
+  setupRenderingTest(hooks)
 
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<AlienFooter />`);
+    await render(hbs`<AlienFooter />`)
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.equal(this.element.textContent.trim(), '')
 
     // Template block usage:
     await render(hbs`
       <AlienFooter>
         template block text
       </AlienFooter>
-    `);
+    `)
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
-  });
-});
+    assert.equal(this.element.textContent.trim(), 'template block text')
+  })
+})
