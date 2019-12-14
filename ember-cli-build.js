@@ -16,6 +16,15 @@ const purgeCSS = {
     whitelist: [
       // Be sure to whitelist any class names that come from javascript or
       // are otherwise programatically set, or they will vanish in production.
+      'text-red-500',
+      'text-orange-500',
+      'text-yellow-500',
+      'text-green-500',
+      'text-teal-500',
+      'text-blue-500',
+      'text-indigo-500',
+      'text-purple-500',
+      'text-pink-500'
     ],
     defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
   }

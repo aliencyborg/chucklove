@@ -1,0 +1,43 @@
+---
+- name: web application deploy
+  hosts: west
+  remote_user: hank
+  vars:
+    workdir: /home/hank/code/src/github.com/aliencyborg/chucklove
+  tasks:
+    - name: ensure code/src/github.com/aliencyborg directory is present
+      file:
+        path: /home/hank/code/src/github.com/aliencyborg
+        state: directory
+
+    - name: clone or update chucklove repository (prod)
+      git:
+        accept_hostkey: yes
+        dest: "{{ workdir }}"
+        key_file: /home/hank/.ssh/id_rsa
+        repo: 'git@github.com:aliencyborg/chucklove.git'
+        update: yes
+        version: master
+
+    - name: build docker image
+      docker_image:
+        force_source: yes
+        name: chucklove
+        source: build
+        tag: latest
+        build:
+          path: "{{ workdir }}"
+          pull: no
+
+    - name: run docker container
+      docker_container:
+        expose: 80
+        image: chucklove:latest
+        name: chucklove
+        state: started
+        env:
+          HSTS: 'off'
+          LETSENCRYPT_HOST: 'chucklove.live,www.chucklove.live'
+          PORT: '80'
+          VIRTUAL_HOST: 'chucklove.live,www.chucklove.live'
+
