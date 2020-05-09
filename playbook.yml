@@ -34,7 +34,6 @@
         expose: 80
         image: chucklove:latest
         name: chucklove
-        state: started
         env:
           HSTS: 'off'
           LETSENCRYPT_HOST: 'chucklove.live,www.chucklove.live'
