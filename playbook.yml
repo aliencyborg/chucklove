@@ -1,23 +1,26 @@
 ---
 - name: web application deploy
-  hosts: west
-  remote_user: hank
+  hosts: east
+  remote_user: luis
   vars:
-    workdir: /home/hank/code/src/github.com/aliencyborg/chucklove
+    branch: "master"
+    homedir: "/home/{{ user }}"
+    org: aliencyborg
+    repo: chucklove
+    user: luis
+    workdir: "{{ homedir }}/code/src/github.com/{{ org }}/{{ repo }}"
   tasks:
-    - name: ensure code/src/github.com/aliencyborg directory is present
+    - name: ensure workdir parent dir is present
       file:
-        path: /home/hank/code/src/github.com/aliencyborg
+        path: "{{ homedir }}/code/src/github.com/{{ org }}"
         state: directory
 
-    - name: clone or update chucklove repository (prod)
+    - name: clone or update repo (prod)
       git:
-        accept_hostkey: yes
         dest: "{{ workdir }}"
-        key_file: /home/hank/.ssh/id_rsa
-        repo: 'git@github.com:aliencyborg/chucklove.git'
+        repo: "https://github.com/{{ org }}/{{ repo }}.git"
         update: yes
-        version: master
+        version: "{{ branch }}"
 
     - name: build docker image
       docker_image:
@@ -34,6 +37,7 @@
         expose: 80
         image: chucklove:latest
         name: chucklove
+        restart_policy: always
         env:
           HSTS: 'off'
           LETSENCRYPT_HOST: 'chucklove.live,www.chucklove.live'
